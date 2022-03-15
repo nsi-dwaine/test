@@ -2,8 +2,13 @@
   <head>
     <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
     <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-standalone-preset.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css" />
-    <title>TMF622_ProductOrder</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>PS-PBI-Inventory</title>
   </head>
   <body>
     <div id="swagger-ui"></div>
@@ -13,11 +18,11 @@
           urls: [
             {
               name: "PS-PBI-Customer-swagger-Execute",
-              url: "/Swagger/PS-PBI-Customer-swagger-Execute.json",
+              url: "PS-PBI-Customer-swagger-Execute.json",
             },
             {
               name: "PS-PBI-Customer-swagger.regular",
-              url: "/Swagger/PS-PBI-Customer-swagger.json",
+              url: "PS-PBI-Customer-swagger.json",
             },
           ],
           dom_id: "#swagger-ui",
@@ -33,16 +38,20 @@
       .swagger-ui .topbar .download-url-wrapper input[type="text"] {
         border: 2px solid #77889a;
       }
+
       .swagger-ui .topbar .download-url-wrapper .download-url-button {
         background: #77889a;
       }
+
       .swagger-ui img {
         display: none;
       }
+
       .swagger-ui .topbar {
         background-color: #ededed;
         border-bottom: 2px solid #c1c1c1;
       }
+
       .swagger-ui .topbar .download-url-wrapper .select-label {
         color: #3b4151;
       }

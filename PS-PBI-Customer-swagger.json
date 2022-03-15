@@ -1,0 +1,257 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v2",
+    "title": "Business activity query 'PS-PBI-Customer'",
+    "description": "stage Customer"
+  },
+  "host": "centralusdtapp17.epicorsaas.com",
+  "basePath": "/saas671/api/v2/odata/PS/BaqSvc/PS-PBI-Customer",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json",
+    "text/json"
+  ],
+  "produces": [
+    "application/json",
+    "text/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "OData"
+        ],
+        "summary": "Get service document",
+        "description": "Get service document for the query",
+        "operationId": "GetServiceDocument",
+        "consumes": [],
+        "parameters": [
+          {
+            "$ref": "#/parameters/X-API-Key"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/$metadata": {
+      "get": {
+        "tags": [
+          "OData"
+        ],
+        "summary": "Get metadata document",
+        "description": "Get query OData metadata in XML format",
+        "operationId": "GetMetadata",
+        "consumes": [],
+        "produces": [
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/X-API-Key"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns metadata document"
+          }
+        }
+      }
+    },
+    "/Data": {
+      "get": {
+        "tags": [
+          "OData"
+        ],
+        "summary": "Execute BAQ",
+        "description": "Execute BAQ PS-PBI-Customer <div>OData-specific rules:<ul><li>OData $-parameters data are case-sensitive</li></ul></div>",
+        "operationId": "Execute",
+        "consumes": [],
+        "parameters": [
+          {
+            "$ref": "#/parameters/X-API-Key"
+          },
+          {
+            "$ref": "#/parameters/op_select"
+          },
+          {
+            "$ref": "#/parameters/op_filter"
+          },
+          {
+            "$ref": "#/parameters/op_orderby"
+          },
+          {
+            "$ref": "#/parameters/op_top"
+          },
+          {
+            "$ref": "#/parameters/op_skip"
+          },
+          {
+            "$ref": "#/parameters/op_count"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Epicor.QueryItemSetResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Epicor.QueryItem": {
+      "required": [
+        "Customer_CustNum",
+        "Customer_Name",
+        "Calculated_Region",
+        "Calculated_NationalAccount",
+        "Customer_CustID",
+        "Calculated_BuyingGroup",
+        "Calculated_Channel",
+        "Customer_Zip",
+        "Customer_City",
+        "Customer_State",
+        "Customer_Country",
+        "Customer_Company",
+        "Calculated_CustomerNameFilter"
+      ],
+      "type": "object",
+      "properties": {
+        "Customer_CustNum": {
+          "format": "int32",
+          "description": "A  unique integer assigned by the system to new customers by the customer maintenance program.  This field is used as the foreign key to identify the customer in other files such as OrderHed or InvcHead.  The end user should never see this field in the application but can use it for reporting purposes.",
+          "type": "integer"
+        },
+        "Customer_Name": {
+          "description": "The full name of the customer.",
+          "type": "string"
+        },
+        "Calculated_Region": {
+          "type": "string"
+        },
+        "Calculated_NationalAccount": {
+          "type": "string"
+        },
+        "Customer_CustID": {
+          "description": "A user defined external customer ID.  This must be unique within the file.  This ID may be used in certain screen displays or reports where a full customer name is inappropriate. Therefore users should use meaningful characters as they would in any other master file. This master file key is a little different in that the user can change. This change is allowed because the system is not using the CustID as a foreign key in any other file.  Rather it uses the CustNum field which is assigned to th",
+          "type": "string"
+        },
+        "Calculated_BuyingGroup": {
+          "type": "string"
+        },
+        "Calculated_Channel": {
+          "type": "string"
+        },
+        "Customer_Zip": {
+          "description": "The zip or postal code portion of the customer's main address.",
+          "type": "string"
+        },
+        "Customer_City": {
+          "description": "The city portion of the customer's main address.",
+          "type": "string"
+        },
+        "Customer_State": {
+          "description": "The state or province portion of the customer's main address.",
+          "type": "string"
+        },
+        "Customer_Country": {
+          "description": "The country of the main customer address.",
+          "type": "string"
+        },
+        "Customer_Company": {
+          "description": "Company Identifier.",
+          "type": "string"
+        },
+        "Calculated_CustomerNameFilter": {
+          "type": "string"
+        },
+        "RowIdent": {
+          "format": "uuid",
+          "description": "Surrogate key",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        }
+      }
+    },
+    "Epicor.QueryItemSetResponse": {
+      "type": "object",
+      "properties": {
+        "@odata.context": {
+          "type": "string"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Epicor.QueryItem"
+          }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "X-API-Key": {
+      "name": "X-API-Key",
+      "in": "header",
+      "description": "Epicor API Key",
+      "required": true,
+      "type": "string"
+    },
+    "op_select": {
+      "name": "$select",
+      "in": "query",
+      "description": "OData select comma delimited list of fields",
+      "required": false,
+      "type": "string"
+    },
+    "op_filter": {
+      "name": "$filter",
+      "in": "query",
+      "description": "OData filter results",
+      "required": false,
+      "type": "string"
+    },
+    "op_orderby": {
+      "name": "$orderby",
+      "in": "query",
+      "description": "OData sort results",
+      "required": false,
+      "type": "string"
+    },
+    "op_top": {
+      "name": "$top",
+      "in": "query",
+      "description": "OData top results",
+      "required": false,
+      "type": "integer"
+    },
+    "op_skip": {
+      "name": "$skip",
+      "in": "query",
+      "description": "OData skip results",
+      "required": false,
+      "type": "integer"
+    },
+    "op_count": {
+      "name": "$count",
+      "in": "query",
+      "description": "odata.count value",
+      "required": false,
+      "type": "boolean"
+    }
+  },
+  "tags": [
+    {
+      "name": "OData",
+      "description": "Executes or updates business activity query"
+    }
+  ]
+}
